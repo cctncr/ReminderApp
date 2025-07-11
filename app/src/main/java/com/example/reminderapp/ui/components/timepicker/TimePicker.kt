@@ -75,10 +75,3 @@ fun TimePicker(
         }
     }
 }
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-@Preview
-fun TimePicker_Preview() {
-    TimePicker({}, {}, initialHour = 22, initialMinute = 19)
-}

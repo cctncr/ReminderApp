@@ -39,36 +39,73 @@ class ReminderViewModel : ViewModel() {
 
     fun createReminder(reminderUiState: ReminderUiState) {
         viewModelScope.launch {
-            val newReminder = ReminderUiState(
-                id = reminderUiState.id,
-                title = reminderUiState.title,
-                time = reminderUiState.time,
-                isEnabled = reminderUiState.isEnabled,
-                reminderType = reminderUiState.reminderType
-            )
             _reminders.update { currentList ->
-                currentList + newReminder
+                currentList + reminderUiState
             }
         }
+    }
 
+    fun updateReminder(updatedReminder: ReminderUiState) {
+        viewModelScope.launch {
+            _reminders.update { currentList ->
+                currentList.map { reminder ->
+                    if (reminder.id == updatedReminder.id) {
+                        updatedReminder
+                    } else {
+                        reminder
+                    }
+                }
+            }
+        }
     }
 
     fun toggleEnabled(id: String, enabled: Boolean) {
-        _reminders.update { list ->
-            list.map { if (it.id == id) it.copy(isEnabled = enabled) else it }
+        viewModelScope.launch {
+            _reminders.update { currentList ->
+                currentList.map { reminder ->
+                    if (reminder.id == id) {
+                        reminder.copy(isEnabled = enabled)
+                    } else {
+                        reminder
+                    }
+                }
+            }
         }
     }
 
     fun updateTime(id: String, newTime: String) {
-        _reminders.update { list ->
-            list.map { if (it.id == id) it.copy(time = newTime) else it }
+        viewModelScope.launch {
+            _reminders.update { currentList ->
+                currentList.map { reminder ->
+                    if (reminder.id == id) {
+                        reminder.copy(time = newTime)
+                    } else {
+                        reminder
+                    }
+                }
+            }
         }
     }
 
     fun updateType(id: String, newType: ReminderType) {
-        _reminders.update { list ->
-            list.map { if (it.id == id) it.copy(reminderType = newType) else it }
+        viewModelScope.launch {
+            _reminders.update { currentList ->
+                currentList.map { reminder ->
+                    if (reminder.id == id) {
+                        reminder.copy(reminderType = newType)
+                    } else {
+                        reminder
+                    }
+                }
+            }
+        }
+    }
+
+    fun deleteReminder(id: String) {
+        viewModelScope.launch {
+            _reminders.update { currentList ->
+                currentList.filter { it.id != id }
+            }
         }
     }
 }
-

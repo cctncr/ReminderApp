@@ -1,5 +1,6 @@
 package com.example.reminderapp.presentation.screens.main
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -35,14 +36,17 @@ fun ReminderScreen(
                 onTimeChange = { newTime ->
                     viewModel.updateTime(reminder.id, newTime)
                 },
-                onReminderTypeChance = { reminderType ->
+                onReminderTypeChange = { reminderType ->
                     viewModel.updateType(reminder.id, reminderType)
-                }
+                },
+                reminderType = reminder.reminderType,
+                onReminderClick = {},
             )
         }
     }
 }
 
+@SuppressLint("ViewModelConstructorInComposable")
 @Composable
 @Preview
 fun ReminderScreen_Preview() {
