@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.reminderapp.presentation.screens.main.components.ReminderItemRow
+import com.example.reminderapp.presentation.viewmodel.ReminderViewModel
 
 @Composable
 fun ReminderScreen(

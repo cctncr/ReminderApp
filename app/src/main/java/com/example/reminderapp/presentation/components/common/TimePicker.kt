@@ -1,4 +1,4 @@
-package com.example.reminderapp.ui.components.timepicker
+package com.example.reminderapp.presentation.components.common
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

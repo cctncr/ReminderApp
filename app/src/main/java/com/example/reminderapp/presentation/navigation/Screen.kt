@@ -1,4 +1,4 @@
-package com.example.reminderapp.navigation
+package com.example.reminderapp.presentation.navigation
 
 import androidx.navigation.NavType
 import androidx.navigation.navArgument

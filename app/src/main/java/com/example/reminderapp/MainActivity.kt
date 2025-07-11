@@ -9,11 +9,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.reminderapp.navigation.Screen
+import com.example.reminderapp.presentation.navigation.Screen
 import com.example.reminderapp.presentation.screens.createedit.CreateEditReminderScreen
 import com.example.reminderapp.presentation.screens.main.MainScreen
-import com.example.reminderapp.presentation.screens.main.ReminderViewModel
-import com.example.reminderapp.ui.theme.ReminderAppTheme
+import com.example.reminderapp.presentation.viewmodel.ReminderViewModel
+import com.example.reminderapp.presentation.theme.ReminderAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

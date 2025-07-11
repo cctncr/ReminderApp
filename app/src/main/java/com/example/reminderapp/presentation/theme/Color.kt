@@ -1,4 +1,4 @@
-package com.example.reminderapp.ui.theme
+package com.example.reminderapp.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.example.reminderapp.domain.models.Time
-import com.example.reminderapp.ui.components.timepicker.TimePicker
+import com.example.reminderapp.presentation.components.common.TimePicker
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

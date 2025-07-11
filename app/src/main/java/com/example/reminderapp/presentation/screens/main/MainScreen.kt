@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.example.reminderapp.presentation.screens.main.components.AddReminderFAB
 import com.example.reminderapp.presentation.screens.main.components.ReminderItemRow
 import androidx.compose.foundation.lazy.items
+import com.example.reminderapp.presentation.viewmodel.ReminderViewModel
 
 @Composable
 fun MainScreen(

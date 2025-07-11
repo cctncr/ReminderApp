@@ -1,4 +1,4 @@
-package com.example.reminderapp.presentation.screens.main.models
+package com.example.reminderapp.presentation.models
 
 import com.example.reminderapp.domain.models.ReminderType
 import java.util.UUID
