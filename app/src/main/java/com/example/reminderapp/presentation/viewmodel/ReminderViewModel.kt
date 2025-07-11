@@ -8,6 +8,7 @@ import com.example.reminderapp.domain.usecases.ReminderUseCases
 import com.example.reminderapp.presentation.mapper.ReminderUiMapper
 import com.example.reminderapp.presentation.models.EditingState
 import com.example.reminderapp.presentation.models.ReminderUiState
+import com.example.reminderapp.utils.ReminderConstants
 import com.example.reminderapp.utils.ReminderUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -58,10 +59,7 @@ class ReminderViewModel @Inject constructor(
     fun updateTime(id: String, newTime: String) {
         viewModelScope.launch {
             try {
-                reminderUseCases.getReminderById(id)?.let { reminder ->
-                    val updatedReminder = reminder.copy(time = ReminderUtils.stringToTime(newTime))
-                    reminderUseCases.updateReminder(updatedReminder)
-                }
+                reminderUseCases.updateReminderTime(id, newTime)
             } catch (e: Exception) {
                 _error.value = e.message
             }
@@ -71,10 +69,7 @@ class ReminderViewModel @Inject constructor(
     fun updateType(id: String, newType: ReminderType) {
         viewModelScope.launch {
             try {
-                reminderUseCases.getReminderById(id)?.let { reminder ->
-                    val updatedReminder = reminder.copy(reminderType = newType)
-                    reminderUseCases.updateReminder(updatedReminder)
-                }
+                reminderUseCases.updateReminderType(id, newType)
             } catch (e: Exception) {
                 _error.value = e.message
             }
@@ -121,7 +116,7 @@ class ReminderViewModel @Inject constructor(
 
     fun updateEditingTitle(title: String) {
         _editingState.value?.let { state ->
-            if (title.length <= 24) {
+            if (title.length <= ReminderConstants.MAX_TITLE_LENGTH) {
                 _editingState.value = state.copy(
                     reminder = state.reminder.copy(title = title.ifBlank { null })
                 )

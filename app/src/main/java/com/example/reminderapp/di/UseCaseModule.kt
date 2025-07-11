@@ -7,6 +7,8 @@ import com.example.reminderapp.domain.usecases.GetAllRemindersUseCase
 import com.example.reminderapp.domain.usecases.GetReminderByIdUseCase
 import com.example.reminderapp.domain.usecases.ReminderUseCases
 import com.example.reminderapp.domain.usecases.ToggleReminderEnabledUseCase
+import com.example.reminderapp.domain.usecases.UpdateReminderTimeUseCase
+import com.example.reminderapp.domain.usecases.UpdateReminderTypeUseCase
 import com.example.reminderapp.domain.usecases.UpdateReminderUseCase
 import dagger.Module
 import dagger.Provides
@@ -27,7 +29,9 @@ object UseCaseModule {
             createReminder = CreateReminderUseCase(repository),
             updateReminder = UpdateReminderUseCase(repository),
             deleteReminder = DeleteReminderUseCase(repository),
-            toggleReminderEnabled = ToggleReminderEnabledUseCase(repository)
+            toggleReminderEnabled = ToggleReminderEnabledUseCase(repository),
+            updateReminderTime = UpdateReminderTimeUseCase(repository),
+            updateReminderType = UpdateReminderTypeUseCase(repository)
         )
     }
 }

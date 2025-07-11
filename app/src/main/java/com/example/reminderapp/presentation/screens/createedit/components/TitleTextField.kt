@@ -15,13 +15,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
+import com.example.reminderapp.utils.ReminderConstants
 
 @Composable
 fun TitleTextField(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
     modifier: Modifier = Modifier,
-    maxLength: Int = 24
+    maxLength: Int = ReminderConstants.MAX_TITLE_LENGTH
 ) {
     Box(
         modifier = modifier
