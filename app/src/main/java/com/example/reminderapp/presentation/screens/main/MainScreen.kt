@@ -23,13 +23,6 @@ fun MainScreen(
 ) {
     val reminders by viewModel.reminders.collectAsState()
 
-    val sortedReminders = reminders.sortedBy { reminder ->
-        val timeParts = reminder.time.split(":")
-        val hour = timeParts.getOrNull(0)?.toIntOrNull() ?: 0
-        val minute = timeParts.getOrNull(1)?.toIntOrNull() ?: 0
-        hour * 60 + minute
-    }
-
     Scaffold(
         floatingActionButton = {
             AddReminderFAB(
@@ -45,7 +38,7 @@ fun MainScreen(
             contentPadding = PaddingValues(16.dp)
         ) {
             items(
-                items = sortedReminders,
+                items = reminders,
                 key = { it.id }
             ) { reminder ->
                 ReminderItemRow(
