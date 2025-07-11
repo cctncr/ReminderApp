@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
@@ -30,8 +29,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.reminderapp.domain.models.ReminderType
+import com.example.reminderapp.utils.ReminderUtils
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReminderItemRow(
     time: String,
@@ -134,15 +133,11 @@ fun ReminderItemRow(
     if (showDialog) {
         TimePickerDialog(
             onDismissRequest = { showDialog = false },
-            onConfirmRequest = { state ->
-                val newTime = "${state.hour.toString().padStart(2, '0')}:${
-                    state.minute.toString().padStart(2, '0')
-                }"
-                onTimeChange(newTime)
+            onConfirmRequest = { newTime ->
+                onTimeChange(ReminderUtils.timeToString(newTime))
                 showDialog = false
             },
-            initialHour = time.substring(0, 2).toInt(),
-            initialMinute = time.substring(3, 5).toInt()
+            initialTime = ReminderUtils.stringToTime(time)
         )
     }
 }

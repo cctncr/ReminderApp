@@ -1,6 +1,5 @@
 package com.example.reminderapp.presentation.screens.main
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.reminderapp.presentation.screens.main.components.ReminderItemRow
 
@@ -44,11 +42,4 @@ fun ReminderScreen(
             )
         }
     }
-}
-
-@SuppressLint("ViewModelConstructorInComposable")
-@Composable
-@Preview
-fun ReminderScreen_Preview() {
-    ReminderScreen(ReminderViewModel())
 }

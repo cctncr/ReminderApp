@@ -14,7 +14,9 @@ import com.example.reminderapp.presentation.screens.createedit.CreateEditReminde
 import com.example.reminderapp.presentation.screens.main.MainScreen
 import com.example.reminderapp.presentation.screens.main.ReminderViewModel
 import com.example.reminderapp.ui.theme.ReminderAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val reminderViewModel: ReminderViewModel by viewModels()

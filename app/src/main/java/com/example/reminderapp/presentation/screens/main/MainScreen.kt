@@ -23,7 +23,6 @@ fun MainScreen(
 ) {
     val reminders by viewModel.reminders.collectAsState()
 
-    // Saate göre sıralama
     val sortedReminders = reminders.sortedBy { reminder ->
         val timeParts = reminder.time.split(":")
         val hour = timeParts.getOrNull(0)?.toIntOrNull() ?: 0

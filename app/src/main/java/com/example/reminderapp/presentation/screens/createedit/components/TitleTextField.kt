@@ -11,8 +11,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -36,7 +37,10 @@ fun TitleTextField(
             },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            placeholder = { Text("Title") }
+            placeholder = { Text("Title") },
+            textStyle = TextStyle(
+                textDirection = TextDirection.Ltr
+            )
         )
 
         Text(
@@ -47,13 +51,4 @@ fun TitleTextField(
                 .padding(end = 16.dp, bottom = 8.dp)
         )
     }
-}
-
-@Composable
-@Preview
-fun TitleTextField_Preview() {
-    TitleTextField(
-       TextFieldValue(""),
-        {},
-    )
 }

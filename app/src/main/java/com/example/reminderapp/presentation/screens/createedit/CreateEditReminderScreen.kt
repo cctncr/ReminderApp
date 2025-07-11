@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,10 +29,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import com.example.reminderapp.domain.models.ReminderType
+import com.example.reminderapp.domain.models.Time
 import com.example.reminderapp.presentation.screens.createedit.components.TitleTextField
 import com.example.reminderapp.presentation.screens.main.ReminderViewModel
 import com.example.reminderapp.presentation.screens.main.models.ReminderUiState
 import com.example.reminderapp.ui.components.timepicker.TimePicker
+import com.example.reminderapp.utils.ReminderUtils
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -53,9 +55,11 @@ fun CreateEditReminderScreen(
         mutableStateOf(existingReminder?.reminderType ?: ReminderType.ONE_TIME)
     }
 
-    val initialTime = existingReminder?.time?.split(":") ?: listOf("08", "00")
-    val initialHour = initialTime.getOrNull(0)?.toIntOrNull() ?: 8
-    val initialMinute = initialTime.getOrNull(1)?.toIntOrNull() ?: 0
+    val initialTime = existingReminder?.time?.let {
+        ReminderUtils.stringToTime(it)
+    } ?: ReminderUtils.getCurrentTime()
+    val initialHour = initialTime.hour
+    val initialMinute = initialTime.minute
 
     Scaffold(
         topBar = {
@@ -65,7 +69,7 @@ fun CreateEditReminderScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }
             )
@@ -112,9 +116,12 @@ fun CreateEditReminderScreen(
 
             TimePicker(
                 onConfirm = { timePickerState ->
-                    val time = "${timePickerState.hour.toString().padStart(2, '0')}:${
-                        timePickerState.minute.toString().padStart(2, '0')
-                    }"
+                    val time = ReminderUtils.timeToString(
+                        Time(
+                            timePickerState.hour,
+                            timePickerState.minute
+                        )
+                    )
 
                     if (existingReminder != null) {
                         val updatedReminder = existingReminder.copy(
